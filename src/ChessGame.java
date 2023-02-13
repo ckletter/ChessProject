@@ -29,6 +29,7 @@ public class ChessGame {
      */
     public void playGame()
     {
+        printInstructions();
         board.printBoard();
         while (!isWin)
         {
@@ -68,6 +69,13 @@ public class ChessGame {
 
         // Moves the piece to the desired square on the board
         board.movePiece(colFrom, rowFrom, colTo, rowTo);
+    }
+    /** Prints instructions in the console for how to play the Chess game**/
+    public void printInstructions()
+    {
+        System.out.println("\nWelcome to Cody's Chess Game! This game will function as an actual chess game, but for now,"
+                + " you can just move and take pieces on the board.\n\nYou can choose the row and column of the squares "
+                + "you want to move pieces from and to by entering it in the console. Have fun!\n\n");
     }
     /** Gets instance of the Board class board and returns it **/
     public Board getBoard()
