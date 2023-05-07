@@ -10,6 +10,8 @@ public class Square {
     // Location of square
     private int row;
     private int col;
+    private boolean blackOccupied;
+    private boolean whiteOccupied;
     // Color of square
     private Color color;
     // Piece on specific square
@@ -26,6 +28,8 @@ public class Square {
         this.row = row;
         this.col = col;
         this.color = color;
+        this.blackOccupied = false;
+        this.whiteOccupied = false;
     }
 
     /**
@@ -50,25 +54,18 @@ public class Square {
      */
     public void draw(Graphics g, ChessGameView c)
     {
-        // Determines starting x and y location to draw the square based off row and column of the square
-        int startX = col * SQUARE_WIDTH + 100;
-        int startY = row * SQUARE_WIDTH + 100;
         // Gets set of images in the Resources file
         Image[] images = c.getImages();
-
-        // Sets color to the color of the square
-        g.setColor(color);
-
-        // Draws the square at the determined location
-        g.fillRect(startX, startY, SQUARE_WIDTH, SQUARE_WIDTH);
-
         // Ends draw method if there is no Piece to draw
         if (piece == null)
         {
             return;
         }
+        // Determines starting x and y location to draw piece based off its x and y variables
+        int startX = piece.getX();
+        int startY = piece.getY();
         // Draws a rook of correct color over the square if Piece rook exists at the square
-        else if (piece instanceof Rook)
+        if (piece instanceof Rook)
         {
             if (piece.getColor() == Piece.BLACK)
             {

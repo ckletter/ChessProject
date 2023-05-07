@@ -9,9 +9,9 @@ public class Knight extends Piece {
      * Constructor
      * Calls constructor of Piece class passing in type of Piece (Knight)
      */
-    public Knight(boolean color)
+    public Knight(boolean color, int row, int col, int x, int y)
     {
-        super(Board.KNIGHT, color);
+        super(Board.KNIGHT, color, row, col, x, y);
     }
     /**
      * Draw method specific to type of Piece
@@ -32,5 +32,21 @@ public class Knight extends Piece {
         {
             g.drawImage(images[Board.KNIGHT + 6], x, y, Piece.PIECE_TAKEN_WIDTH, Piece.PIECE_TAKEN_WIDTH, viewer);
         }
+    }
+
+    @Override
+    public boolean isValidJump(int row, int col, Board board) {
+        // Gets the row and column of the piece's current location
+        int pieceRow = super.getRow();
+        int pieceCol = super.getCol();
+        // If the knight has moved to the left or right one square and up or down two squares, returns knight move is legal
+        if (Math.abs(pieceRow - row) == 1 && Math.abs(pieceCol - col) == 2) {
+            return true;
+        }
+        // If the knight has moved to the left or right two squares and up or down one square, returns knight move is legal
+        if (Math.abs(pieceCol - col) == 1 && Math.abs(pieceRow - row) == 2) {
+            return true;
+        }
+        return false;
     }
 }

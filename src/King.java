@@ -9,8 +9,8 @@ public class King extends Piece {
      * Constructor
      * Calls constructor of Piece class passing in type of Piece (King)
      */
-    public King(boolean color) {
-        super(Board.KING, color);
+    public King(boolean color, int row, int col, int x, int y) {
+        super(Board.KING, color, row, col, x, y);
     }
 
     /**
@@ -32,5 +32,25 @@ public class King extends Piece {
         {
             g.drawImage(images[Board.KING + 6], x, y, Piece.PIECE_TAKEN_WIDTH, Piece.PIECE_TAKEN_WIDTH, viewer);
         }
+    }
+    @Override
+    public boolean isValidJump(int row, int col, Board board) {
+        // Gets the row and column of the piece's current location
+        int pieceRow = super.getRow();
+        int pieceCol = super.getCol();
+        // If the king has moved left or right one square but not up or down, returns that the king move is a valid jump
+        if (pieceRow == row && Math.abs(pieceCol - col) == 1) {
+            return true;
+        }
+        // If the king has moved up or down one square but not left or right, returns that the king move is a valid jump
+        if (pieceCol == col && Math.abs(pieceRow - row) == 1) {
+            return true;
+        }
+        // If the king has moved one square diagonally in any direction, returns that the king move is a valid jump
+        if ((Math.abs(pieceCol - col) == 1 && Math.abs(pieceRow - row) == 1)) {
+            return true;
+        }
+        // If the king jump is not valid, returns false
+        return false;
     }
 }
