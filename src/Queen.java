@@ -2,12 +2,13 @@ import java.awt.*;
 /**
  * Extends Piece class
  * Contains draw method specific to the type of Piece
- * To be implemented: Valid moves according to type of Piece
+ * Valid moves according to type of Piece
  */
 public class Queen extends Piece {
     /**
      * Constructor
      * Calls constructor of Piece class passing in type of Piece (Queen)
+     * row and col index of piece, x and y location, and color
      */
     public Queen(boolean color, int row, int col, int x, int y) {
         super(Board.QUEEN, color, row, col, x, y);
@@ -32,7 +33,14 @@ public class Queen extends Piece {
             g.drawImage(images[Board.QUEEN + 6], x, y, Piece.PIECE_TAKEN_WIDTH, Piece.PIECE_TAKEN_WIDTH, viewer);
         }
     }
-
+    /**
+     * implements movements particular to a queen piece
+     * @param row - the row index where the player is trying to move to
+     * @param col - the col index where the player is trying to move to
+     * @param board
+     * @return true if the location where the player is trying to move the queen to is valid, false otherwise
+     * (must be no pieces in between queen's initial and final location to return true)
+     */
     @Override
     public boolean isValidJump(int row, int col, Board board) {
         // Gets the row and column of the piece's current location
@@ -46,7 +54,7 @@ public class Queen extends Piece {
             if (pieceCol < col) {
                 // If there are no pieces in between the queens initial location and final location, returns true
                 // Else, returns false
-                if (board.piecesBetween(row, col, pieceRow, pieceCol + 1, "RIGHT", squares)) {
+                if (board.piecesBetween(row, col, pieceRow, pieceCol + 1, "RIGHT")) {
                     return false;
                 }
                 return true;
@@ -55,7 +63,7 @@ public class Queen extends Piece {
             else {
                 // If there are no pieces in between the queens initial location and final location, returns true
                 // Else, returns false
-                if (board.piecesBetween(row, col, pieceRow, pieceCol - 1, "LEFT", squares)) {
+                if (board.piecesBetween(row, col, pieceRow, pieceCol - 1, "LEFT")) {
                     return false;
                 }
                 return true;
@@ -67,7 +75,7 @@ public class Queen extends Piece {
             if (pieceRow < row) {
                 // If there are no pieces in between the queens initial location and final location, returns true
                 // Else, returns false
-                if (board.piecesBetween(row, col, pieceRow + 1, pieceCol, "DOWN", squares)) {
+                if (board.piecesBetween(row, col, pieceRow + 1, pieceCol, "DOWN")) {
                     return false;
                 }
                 return true;
@@ -76,7 +84,7 @@ public class Queen extends Piece {
             else {
                 // If there are no pieces in between the queens initial location and final location, returns true
                 // Else, returns false
-                if (board.piecesBetween(row, col, pieceRow - 1, pieceCol, "UP", squares)) {
+                if (board.piecesBetween(row, col, pieceRow - 1, pieceCol, "UP")) {
                     return false;
                 }
                 return true;
@@ -88,7 +96,7 @@ public class Queen extends Piece {
             if (pieceRow > row) {
                 // If there are no pieces in between the queens initial location and final location, returns true
                 // Else, returns false
-                if (board.piecesBetween(row, col, pieceRow - 1, pieceCol - 1, "UPLEFT", squares)) {
+                if (board.piecesBetween(row, col, pieceRow - 1, pieceCol - 1, "UPLEFT")) {
                     return false;
                 }
                 return true;
@@ -97,7 +105,7 @@ public class Queen extends Piece {
             else {
                 // If there are no pieces in between the queens initial location and final location, returns true
                 // Else, returns false
-                if (board.piecesBetween(row, col, pieceRow + 1, pieceCol + 1, "DOWNRIGHT", squares)) {
+                if (board.piecesBetween(row, col, pieceRow + 1, pieceCol + 1, "DOWNRIGHT")) {
                     return false;
                 }
                 return true;
@@ -109,7 +117,7 @@ public class Queen extends Piece {
             if (pieceRow > row) {
                 // If there are no pieces in between the queens initial location and final location, returns true
                 // Else, returns false
-                if (board.piecesBetween(row, col, pieceRow - 1, pieceCol + 1, "UPRIGHT", squares)) {
+                if (board.piecesBetween(row, col, pieceRow - 1, pieceCol + 1, "UPRIGHT")) {
                     return false;
                 }
                 return true;
@@ -118,7 +126,7 @@ public class Queen extends Piece {
             else {
                 // If there are no pieces in between the queens initial location and final location, returns true
                 // Else, returns false
-                if (board.piecesBetween(row, col, pieceRow + 1, pieceCol - 1, "DOWNLEFT", squares)) {
+                if (board.piecesBetween(row, col, pieceRow + 1, pieceCol - 1, "DOWNLEFT")) {
                     return false;
                 }
                 return true;

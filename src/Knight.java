@@ -2,12 +2,13 @@ import java.awt.*;
 /**
  * Extends Piece class
  * Contains draw method specific to the type of Piece
- * To be implemented: Valid moves according to type of Piece
+ * Valid moves according to type of Piece
  */
 public class Knight extends Piece {
     /**
      * Constructor
      * Calls constructor of Piece class passing in type of Piece (Knight)
+     * row and col index of piece, x and y location, and color
      */
     public Knight(boolean color, int row, int col, int x, int y)
     {
@@ -33,7 +34,13 @@ public class Knight extends Piece {
             g.drawImage(images[Board.KNIGHT + 6], x, y, Piece.PIECE_TAKEN_WIDTH, Piece.PIECE_TAKEN_WIDTH, viewer);
         }
     }
-
+    /**
+     * implements movements particular to a knight piece
+     * @param row - the row index where the player is trying to move to
+     * @param col - the col index where the player is trying to move to
+     * @param board
+     * @return true if the location where the player is trying to move the knight to is valid, false otherwise
+     */
     @Override
     public boolean isValidJump(int row, int col, Board board) {
         // Gets the row and column of the piece's current location
@@ -47,6 +54,7 @@ public class Knight extends Piece {
         if (Math.abs(pieceCol - col) == 1 && Math.abs(pieceRow - row) == 2) {
             return true;
         }
+        // Returns that jump is invalid
         return false;
     }
 }

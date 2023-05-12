@@ -3,13 +3,16 @@ import java.awt.Image;
 /**
  * Extends Piece class
  * Contains draw method specific to the type of Piece
- * To be implemented: Valid moves according to type of Piece
+ * Valid moves according to type of Piece
+ * boolean method to see if pawn has promoted or not
  */
 public class Pawn extends Piece {
+    /** Instance Variable hasMoved specific to pawn **/
     private boolean hasMoved;
     /**
      * Constructor
      * Calls constructor of Piece class passing in type of Piece (Pawn)
+     * row and col index of piece, x and y location, and color
      * Sets boolean hasMoved to false
      */
     public Pawn(boolean color, int row, int col, int x, int y)
@@ -37,9 +40,21 @@ public class Pawn extends Piece {
             g.drawImage(images[Board.PAWN + 6], x, y, Piece.PIECE_TAKEN_WIDTH, Piece.PIECE_TAKEN_WIDTH, viewer);
         }
     }
+
+    /**
+     * Setter method
+     * Sets boolean hasMoved to false
+     */
     public void hasNotMoved() {
         hasMoved = false;
     }
+    /**
+     * implements movements particular to a pawn piece
+     * @param row - the row index where the player is trying to move to
+     * @param col - the col index where the player is trying to move to
+     * @param board
+     * @return true if the location where the player is trying to move the pawn to is valid, false otherwise
+     */
     @Override
     public boolean isValidJump(int row, int col, Board board) {
         // Gets the row and column of the piece's current location
@@ -114,6 +129,21 @@ public class Pawn extends Piece {
             }
         }
         // If the pawn move does not fit the valid criteria for a pawn move, returns that pawn move is not legal
+        return false;
+    }
+
+    /**
+     * Checks whether pawn has promoted
+     * @return true if the pawn is now at row index 7 or row index 0, so pawn at the end of the board and has promoted
+     */
+    public boolean hasPromoted() {
+        // Gets the pawn's row
+        int pieceRow = super.getRow();
+        // If the pawn is at the end of the board (row index 7 or 0), returns true
+        if (pieceRow == 7 || pieceRow == 0) {
+            return true;
+        }
+        // If pawn has not promoted, returns false
         return false;
     }
 }

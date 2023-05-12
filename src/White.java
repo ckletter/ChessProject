@@ -26,11 +26,11 @@ public class White extends Player {
         g.setColor(Board.darkBrown);
         // Draws banner background
         g.fillRect(startX, startY, Board.BOARD_LENGTH, Player.BANNER_WIDTH);
-        g.setFont(new Font("Serif", Font.ITALIC + Font.BOLD, 20));
+        g.setFont(new Font("Serif", Font.BOLD, 20));
         // Draws player name
         g.setColor(Color.white);
         g.drawString(super.getName(), startX + 10, startY + 35);
         // Calls method to draw each piece taken by White over the banner
-        super.drawPiecesTaken(g, viewer, 55);
+        super.drawPiecesTaken(g, viewer, 705);
     }
 }
